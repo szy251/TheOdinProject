@@ -16,7 +16,8 @@ body{
     padding-top: 16px;
 }
 
-.logo{
+.logo,
+.banner_main{
     color: #F9FAF8;
     font-size: 24px;
     font-weight: 900;
@@ -32,7 +33,8 @@ body{
 .main_links a,
 .secondary_text,
 .placeholder,
-.sing{
+.sing,
+.banner_secondary{
     text-decoration: none;
     color: #E5E7EB;
     font-size: 18px;
@@ -126,4 +128,23 @@ body{
     font-weight: 900;
     color: #1F2937;
     text-align: end;
+}
+
+.banner{
+    margin: 96px 15%;
+    background-color: #3882F6;
+    border-radius: 8px;
+    flex: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 36px 8%;
+}
+
+.banner .sing{
+    border: 2px solid white;
+}
+
+.banner .sing:active{
+    border: 2px solid rgb(181, 181, 181);
 }
