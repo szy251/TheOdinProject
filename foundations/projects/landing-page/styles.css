@@ -34,7 +34,8 @@ body{
 .secondary_text,
 .placeholder,
 .sing,
-.banner_secondary{
+.banner_secondary,
+.footer{
     text-decoration: none;
     color: #E5E7EB;
     font-size: 18px;
@@ -147,4 +148,12 @@ body{
 
 .banner .sing:active{
     border: 2px solid rgb(181, 181, 181);
+}
+
+.footer{
+    background-color: #1F2937;
+    padding: 24px 0;
+    flex: auto;
+    align-content: center;
+    text-align: center;
 }
