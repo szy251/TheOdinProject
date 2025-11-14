@@ -17,3 +17,5 @@ function getHumanChoice(){
     return prompt("Chose between rook, paper, scisors").toLowerCase();
 }
 
+let humanScore = 0;
+let computerScore = 0;
