@@ -3,18 +3,57 @@ function getComputerChoice(){
 
     switch(choice){
         case 0:
-            return "rock";
+            return 'rock';
         case 1:
-            return "paper";
+            return 'paper';
         case 2:
-            return "scisors";
+            return 'scisors';
         default:
-            return "rock";
+            return 'rock';
     }
 }
 
 function getHumanChoice(){
-    return prompt("Chose between rook, paper, scisors").toLowerCase();
+    return prompt('Chose between rook, paper, scisors').toLowerCase();
+}
+
+function playRound(humanChoice, computerChoice){
+    if(humanChoice == computerChoice){
+        console.log('Remis! Both have ' + humanChoice);
+        return;
+    }
+
+    switch(humanChoice){
+        case 'rock':
+            if(computerChoice === 'paper'){
+                console.log("You lose! Paper beats rock");
+                computerScore +=1;
+            } else{
+                console.log("You win! Rock beats scisors");
+                humanScore +=1;
+            }
+            return;
+        case 'paper':
+            if(computerChoice === 'scisors'){
+                console.log("You lose! Scisors beats paper");
+                computerScore +=1;
+            } else{
+                console.log("You win! Paper beats rock");
+                humanScore +=1;
+            }
+            return;
+        case 'scisors':
+            if(computerChoice === 'rock'){
+                console.log("You lose! Rock beats scisors");
+                computerScore +=1;
+            } else{
+                console.log("You win! Scisors beats paper");
+                humanScore +=1;
+            }
+            return;
+        default:
+            return;
+    }
 }
 
 let humanScore = 0;
