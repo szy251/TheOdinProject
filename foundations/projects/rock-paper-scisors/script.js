@@ -12,3 +12,8 @@ function getComputerChoice(){
             return "rock";
     }
 }
+
+function getHumanChoice(){
+    return prompt("Chose between rook, paper, scisors").toLowerCase();
+}
+
