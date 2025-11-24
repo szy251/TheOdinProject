@@ -1,4 +1,5 @@
 const BOARD_SIZE = 800;
+const STARTING_SIZE = 16;
 let currColor = "rgba(81, 215, 19, 1)";
 
 const board = document.querySelector(".board");
@@ -44,4 +45,4 @@ function drawBoard(lanes, blocks) {
 	}
 }
 
-drawBoard(13, 13);
+drawBoard(STARTING_SIZE, STARTING_SIZE);
