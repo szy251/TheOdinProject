@@ -1,17 +1,27 @@
 const BOARD_SIZE = 800;
 const STARTING_SIZE = 16;
 let currColor = "rgba(81, 215, 19, 1)";
+let isDrawing = false;
+
+document.body.onmousedown = () => (isDrawing = true);
+document.body.onmouseup = () => (isDrawing = false);
 
 const board = document.querySelector(".board");
 const sizeBtn = document.querySelector(".size");
+const resetBtn = document.querySelector(".reset");
 
-board.addEventListener("mouseover", (event) => {
-	const currentBlock = event.target;
+function paintBlock(event) {
+	event.preventDefault();
 
-	if (currentBlock.classList.contains("block")) {
-		currentBlock.style.backgroundColor = currColor;
+	if (event.type === "mouseover" && !isDrawing) return;
+
+	if (event.target.classList.contains("block")) {
+		event.target.style.backgroundColor = currColor;
 	}
-});
+}
+
+board.addEventListener("mouseover", paintBlock);
+board.addEventListener("mousedown", paintBlock);
 
 sizeBtn.addEventListener("click", () => {
 	let size = prompt("Change number of blocks per side (max 100):");
@@ -24,6 +34,13 @@ sizeBtn.addEventListener("click", () => {
 		clearBoard();
 		drawBoard(size, size);
 	}
+});
+
+resetBtn.addEventListener("click", () => {
+	const blocks = document.querySelectorAll(".block");
+	blocks.forEach((block) => {
+		block.style.backgroundColor = "white";
+	});
 });
 
 function clearBoard() {
