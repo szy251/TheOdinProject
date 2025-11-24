@@ -14,7 +14,6 @@ function getComputerChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-	const resultUI = document.querySelector("#round_score");
 	let resultText;
 	if (humanChoice == computerChoice) {
 		resultUI.textContent = "Remis! Both have " + humanChoice;
@@ -59,10 +58,12 @@ let humanScore = 0;
 let computerScore = 0;
 let end = false;
 
+const resultUI = document.querySelector("#round_score");
 const choicesBtn = document.querySelectorAll(".choice");
 const humanUi = document.querySelector("#p_score");
 const computerUi = document.querySelector("#c_score");
 const finalScore = document.querySelector("#final_score");
+const resetBtn = document.querySelector("#reset");
 
 choicesBtn.forEach((button) => {
 	button.addEventListener("click", () => {
@@ -83,4 +84,14 @@ choicesBtn.forEach((button) => {
 			}
 		}
 	});
+});
+
+resetBtn.addEventListener("click", () => {
+	humanScore = 0;
+	computerScore = 0;
+	end = false;
+	humanUi.textContent = "Player: " + humanScore;
+	computerUi.textContent = "Computer: " + computerScore;
+	resultUI.textContent = "";
+	finalScore.textContent = "";
 });
