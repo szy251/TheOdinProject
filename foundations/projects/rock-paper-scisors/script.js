@@ -14,43 +14,56 @@ function getComputerChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+	const resultUI = document.querySelector("div");
+	let resultText;
 	if (humanChoice == computerChoice) {
-		console.log("Remis! Both have " + humanChoice);
+		resultUI.textContent = "Remis! Both have " + humanChoice;
 		return;
 	}
 
 	switch (humanChoice) {
 		case "rock":
 			if (computerChoice === "paper") {
-				console.log("You lose! Paper beats rock");
+				resultText = "You lose! Paper beats rock";
 				computerScore += 1;
 			} else {
-				console.log("You win! Rock beats scisors");
+				resultText = "You win! Rock beats scisors";
 				humanScore += 1;
 			}
-			return;
+			break;
 		case "paper":
 			if (computerChoice === "scisors") {
-				console.log("You lose! Scisors beats paper");
+				resultText = "You lose! Scisors beats paper";
 				computerScore += 1;
 			} else {
-				console.log("You win! Paper beats rock");
+				resultText = "You win! Paper beats rock";
 				humanScore += 1;
 			}
-			return;
+			break;
 		case "scisors":
 			if (computerChoice === "rock") {
-				console.log("You lose! Rock beats scisors");
+				resultText = "You lose! Rock beats scisors";
 				computerScore += 1;
 			} else {
-				console.log("You win! Scisors beats paper");
+				resultText = "You win! Scisors beats paper";
 				humanScore += 1;
 			}
-			return;
+			break;
 		default:
 			return;
 	}
+	resultUI.textContent = resultText;
 }
 
 let humanScore = 0;
 let computerScore = 0;
+
+const choicesBtn = document.querySelectorAll("button");
+
+choicesBtn.forEach((button) => {
+	button.addEventListener("click", () => {
+		let computerChoice = getComputerChoice();
+		let humanChoice = button.textContent.toLocaleLowerCase();
+		playRound(humanChoice, computerChoice);
+	});
+});
