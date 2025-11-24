@@ -14,7 +14,7 @@ function getComputerChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-	const resultUI = document.querySelector("div");
+	const resultUI = document.querySelector("#round_score");
 	let resultText;
 	if (humanChoice == computerChoice) {
 		resultUI.textContent = "Remis! Both have " + humanChoice;
@@ -57,13 +57,30 @@ function playRound(humanChoice, computerChoice) {
 
 let humanScore = 0;
 let computerScore = 0;
+let end = false;
 
-const choicesBtn = document.querySelectorAll("button");
+const choicesBtn = document.querySelectorAll(".choice");
+const humanUi = document.querySelector("#p_score");
+const computerUi = document.querySelector("#c_score");
+const finalScore = document.querySelector("#final_score");
 
 choicesBtn.forEach((button) => {
 	button.addEventListener("click", () => {
-		let computerChoice = getComputerChoice();
-		let humanChoice = button.textContent.toLocaleLowerCase();
-		playRound(humanChoice, computerChoice);
+		if (!end) {
+			let computerChoice = getComputerChoice();
+			let humanChoice = button.textContent.toLocaleLowerCase();
+			playRound(humanChoice, computerChoice);
+			humanUi.textContent = "Player: " + humanScore;
+			computerUi.textContent = "Computer: " + computerScore;
+
+			if (humanScore == 5) {
+				finalScore.textContent = "Player win the game!!!";
+				end = true;
+			}
+			if (computerScore == 5) {
+				finalScore.textContent = "Computer win the game!!!";
+				end = true;
+			}
+		}
 	});
 });
