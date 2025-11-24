@@ -1,3 +1,7 @@
-# Rock Paper Scisors
+# Rock Paper Scissors
 
-This is simple game where player play game with computer. One game has 5 rounds in total.
+This is simple game where player play game with computer. Game ends if player/computer gets 5 points.
+
+### Revisiting Rock Paper Scissors
+
+In one of the next TOP exercises game was eadited, now there is some UI and logic to play game using this interface.
