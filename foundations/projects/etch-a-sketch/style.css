@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+body{
+    margin: 0;
+    min-height: 100vh;
+}
+
+div{
+    margin: 0;
+    padding: 0;
+}
+
+.board{
+    height: 600px;
+    width: 600px;
+    display: flex;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.lane{
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.block{
+    flex: 1 1 0;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: white;
+}
