@@ -1,6 +1,15 @@
 const BOARD_SIZE = 800;
+let currColor = "rgba(81, 215, 19, 1)";
 
 const board = document.querySelector(".board");
+
+board.addEventListener("mouseover", (event) => {
+	const currentBlock = event.target;
+
+	if (currentBlock.classList.contains("block")) {
+		currentBlock.style.backgroundColor = currColor;
+	}
+});
 
 function drawBoard(lanes, blocks) {
 	for (let i = 0; i < lanes; i++) {
