@@ -1,7 +1,10 @@
 const BOARD_SIZE = 800;
 const STARTING_SIZE = 16;
-let currColor = "rgba(81, 215, 19, 1)";
+let red = 81;
+let green = 215;
+let blue = 19;
 let isDrawing = false;
+let isIncremental = false;
 
 document.body.onmousedown = () => (isDrawing = true);
 document.body.onmouseup = () => (isDrawing = false);
@@ -9,6 +12,7 @@ document.body.onmouseup = () => (isDrawing = false);
 const board = document.querySelector(".board");
 const sizeBtn = document.querySelector(".size");
 const resetBtn = document.querySelector(".reset");
+const incrementBtn = document.querySelector(".increment");
 
 function paintBlock(event) {
 	event.preventDefault();
@@ -16,8 +20,21 @@ function paintBlock(event) {
 	if (event.type === "mouseover" && !isDrawing) return;
 
 	if (event.target.classList.contains("block")) {
-		event.target.style.backgroundColor = currColor;
+		changeColor(event);
 	}
+}
+
+function changeColor(event) {
+	let alpha = 1;
+	if (isIncremental) {
+		alpha = Number(event.target.dataset.saturation);
+
+		if (alpha < 1.0) {
+			alpha += 0.1;
+		}
+	}
+	event.target.dataset.saturation = alpha;
+	event.target.style.backgroundColor = `rgba(${red},${green},${blue},${alpha})`;
 }
 
 board.addEventListener("mouseover", paintBlock);
@@ -40,7 +57,13 @@ resetBtn.addEventListener("click", () => {
 	const blocks = document.querySelectorAll(".block");
 	blocks.forEach((block) => {
 		block.style.backgroundColor = "white";
+		block.dataset.saturation = 0;
 	});
+});
+
+incrementBtn.addEventListener("click", () => {
+	isIncremental = !isIncremental;
+	incrementBtn.classList.toggle("active");
 });
 
 function clearBoard() {
@@ -56,6 +79,7 @@ function drawBoard(lanes, blocks) {
 		for (let j = 0; j < blocks; j++) {
 			const block = document.createElement("div");
 			block.classList.toggle("block");
+			block.dataset.saturation = 0;
 			lane.appendChild(block);
 		}
 		board.appendChild(lane);
