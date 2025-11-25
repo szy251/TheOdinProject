@@ -13,6 +13,7 @@ const board = document.querySelector(".board");
 const sizeBtn = document.querySelector(".size");
 const resetBtn = document.querySelector(".reset");
 const incrementBtn = document.querySelector(".increment");
+const colorPicker = document.querySelector("#colorPicker");
 
 function paintBlock(event) {
 	event.preventDefault();
@@ -30,11 +31,22 @@ function changeColor(event) {
 		alpha = Number(event.target.dataset.saturation);
 
 		if (alpha < 1.0) {
-			alpha += 0.1;
+			//multiply by 10 to prevent 0.999999... case
+			alpha *= 10;
+			alpha += 1;
+			alpha /= 10;
 		}
 	}
 	event.target.dataset.saturation = alpha;
 	event.target.style.backgroundColor = `rgba(${red},${green},${blue},${alpha})`;
+}
+
+function getRGB(HEX) {
+	HEX = HEX.slice(1);
+
+	red = parseInt(HEX.substring(0, 2), 16);
+	green = parseInt(HEX.substring(2, 4), 16);
+	blue = parseInt(HEX.substring(4, 6), 16);
 }
 
 board.addEventListener("mouseover", paintBlock);
@@ -64,6 +76,10 @@ resetBtn.addEventListener("click", () => {
 incrementBtn.addEventListener("click", () => {
 	isIncremental = !isIncremental;
 	incrementBtn.classList.toggle("active");
+});
+
+colorPicker.addEventListener("change", (event) => {
+	getRGB(event.target.value);
 });
 
 function clearBoard() {
