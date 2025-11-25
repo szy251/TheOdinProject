@@ -5,6 +5,7 @@ let green = 215;
 let blue = 19;
 let isDrawing = false;
 let isIncremental = false;
+let isRandom = false;
 
 document.body.onmousedown = () => (isDrawing = true);
 document.body.onmouseup = () => (isDrawing = false);
@@ -13,6 +14,7 @@ const board = document.querySelector(".board");
 const sizeBtn = document.querySelector(".size");
 const resetBtn = document.querySelector(".reset");
 const incrementBtn = document.querySelector(".increment");
+const randomBtn = document.querySelector(".random");
 const colorPicker = document.querySelector("#colorPicker");
 
 function paintBlock(event) {
@@ -38,7 +40,22 @@ function changeColor(event) {
 		}
 	}
 	event.target.dataset.saturation = alpha;
-	event.target.style.backgroundColor = `rgba(${red},${green},${blue},${alpha})`;
+
+	let toSet = `rgba(${red},${green},${blue},${alpha})`;
+
+	if (isRandom) {
+		toSet = randomColor(alpha);
+	}
+
+	event.target.style.backgroundColor = toSet;
+}
+
+function randomColor(alpha) {
+	let r = Math.floor(Math.random() * 256);
+	let g = Math.floor(Math.random() * 256);
+	let b = Math.floor(Math.random() * 256);
+
+	return `rgba(${r},${g},${b},${alpha})`;
 }
 
 function getRGB(HEX) {
@@ -76,6 +93,11 @@ resetBtn.addEventListener("click", () => {
 incrementBtn.addEventListener("click", () => {
 	isIncremental = !isIncremental;
 	incrementBtn.classList.toggle("active");
+});
+
+randomBtn.addEventListener("click", () => {
+	isRandom = !isRandom;
+	randomBtn.classList.toggle("active");
 });
 
 colorPicker.addEventListener("change", (event) => {
