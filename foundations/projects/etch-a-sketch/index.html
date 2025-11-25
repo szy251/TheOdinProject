@@ -7,11 +7,18 @@
     <script src="./script.js" defer></script>
 </head>
 <body>
-    <button class="size">Change size</button>
-    <button class="reset">Reset board</button>
-    <button class="increment">Incremental saturatuion</button>
-    <button class="random">Rainbow mode</button>
-    <input type="color" id="colorPicker", value="#51D713"/>
+    <div class="menu">
+        <button class="size menu-btn">Change size</button>
+        <button class="reset menu-btn">Reset board</button>
+        <button class="increment menu-btn">Incremental saturatuion</button>
+        <button class="random menu-btn">Rainbow mode</button>   
+        <div>
+            <input type="color" id="colorPicker" value="#51D713">
+            <label for="colorPicker" class="menu-btn">
+                Pick Color <span id="colorPreview"></span>
+            </label>
+        </div>
+    </div>
     <div class="board"></div>
 </body>
 </html>

@@ -16,6 +16,7 @@ const resetBtn = document.querySelector(".reset");
 const incrementBtn = document.querySelector(".increment");
 const randomBtn = document.querySelector(".random");
 const colorPicker = document.querySelector("#colorPicker");
+const colorLabel = document.querySelector("#colorPreview");
 
 function paintBlock(event) {
 	event.preventDefault();
@@ -33,7 +34,7 @@ function changeColor(event) {
 		alpha = Number(event.target.dataset.saturation);
 
 		if (alpha < 1.0) {
-			//multiply by 10 to prevent 0.999999... case
+			//multiply by 10 prevent 0.999999... case
 			alpha *= 10;
 			alpha += 1;
 			alpha /= 10;
@@ -102,6 +103,7 @@ randomBtn.addEventListener("click", () => {
 
 colorPicker.addEventListener("change", (event) => {
 	getRGB(event.target.value);
+	colorLabel.style.backgroundColor = event.target.value;
 });
 
 function clearBoard() {
