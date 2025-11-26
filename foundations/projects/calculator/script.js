@@ -12,7 +12,7 @@ let symbol = "";
 const numBtns = document.querySelectorAll(".num");
 const displayWhole = document.querySelector(".whole");
 const displayCurr = document.querySelector(".curr");
-const signBtn = document.querySelector(".sing");
+const signBtn = document.querySelector(".sign");
 const dotBtn = document.querySelector(".dot");
 const backBtn = document.querySelector(".backspace");
 const symbolBtn = document.querySelectorAll(".symbol");
@@ -94,6 +94,9 @@ document.addEventListener("click", (event) => {
 
 function handleNumber(value) {
 	if (errorState) return;
+	if (displayCurr.textContent.length >= 15 && edited) {
+		return;
+	}
 	if (!edited) {
 		initUnedited(false, false, value);
 		return;
