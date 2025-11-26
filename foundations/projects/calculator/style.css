@@ -1,7 +1,8 @@
 body{
-    height: 100vh;
-    align-content: center;
-    justify-items: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0;
     font-family: monospace;
     background-color: rgb(200, 242, 255);
@@ -11,6 +12,7 @@ body{
     height: 600px;
     width: 450px;
     padding: 5px;
+    margin: 40px;
     border-radius: 15px;
     box-sizing: border-box;
     background-color: #333;
