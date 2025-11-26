@@ -13,13 +13,23 @@ body{
 
 .display{
     width: auto;
-    height: 30px;
+    height: 65px;
     margin: 10px;
-    padding: 15px;
+    padding-right: 15px;
     text-align: end;
     align-content: center;
     border: 2px solid black;
     font-size: xx-large;
+    box-sizing: border-box;
+}
+
+.whole{
+    height: 20px;
+    font-size: x-large;
+}
+.curr{
+    height: 30px;
+    padding-bottom: 5px;
 }
 
 .buttons{
